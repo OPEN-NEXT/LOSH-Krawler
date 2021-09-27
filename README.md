@@ -1,10 +1,9 @@
-# oshi-crawl
-
-oshi crawler
+# LOSH-Krawler
 
 ## Setup
 
 ### Requirements
+
 Python >= 3.6
 
 [poetry](https://python-poetry.org)
@@ -20,6 +19,7 @@ Once you have `poetry` in your PATH, install the project by entering the `krawl`
 All commands in the `bin/` directory expect the `poetry shell` to be active.
 
 ### Credentials
+
 All environment variables in the `.env.example` file must be defined.
 
 You might want to use [direnv](https://direnv.net/) to automatically source the `.env` file you created.
