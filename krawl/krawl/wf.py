@@ -118,8 +118,6 @@ def saveraw(dct: dict, storagedir: Path) -> str:
 
 
 def fetch_wf(storagedir):
-    results = []
-    resultids = set()
     cursor = ""
     has_next_page = True
     max_pages = int(os.environ.get("MAX_WF_PAGES", "999999"))
