@@ -81,9 +81,8 @@ def getlang(dct):
         return None
     if len(desc.split(" ")) <= 2:
         return "en"
-    else:
-        lang = detect(desc)
-        return lang
+    lang = detect(desc)
+    return lang
 
 
 def getfiles(dct):
@@ -111,21 +110,19 @@ def getfiles(dct):
 def getimage(dct):
     if dct.get("image") is None:
         return None
-    else:
-        return dct.get("image").get("permalink", None)
+    return dct.get("image").get("permalink", None)
 
 
 def getreadme(dct):
     if dct.get("contributionUpstream") is None:
         return None
-    else:
-        # return (
-        #     dct.get("contributionUpstream", {})
-        #     .get("contribFile", {})
-        #     .get("file", {})
-        #     .get("permalink")
-        # )
-        return None
+    # return (
+    #     dct.get("contributionUpstream", {})
+    #     .get("contribFile", {})
+    #     .get("file", {})
+    #     .get("permalink")
+    # )
+    return None
 
 
 def convert(dct):
