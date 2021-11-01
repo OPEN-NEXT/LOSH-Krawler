@@ -1,7 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
+
 from datetime import datetime
-from krawl.common import detailskey, download, fetch, parse, save, setversion, validate
+import doctest
+import re
+import sqlite3
+from urllib.parse import urlparse, urlsplit
+
+import toml
+import requests
+from github import Github, PaginatedList
+
+from krawl.common import detailskey, fetch, parse, save, setversion, validate
 from krawl.config import GITHUB_KEY, WORKDIR
 from krawl.db import (
     Manifest,
@@ -11,16 +21,6 @@ from krawl.db import (
     insert,
     migrate,
 )
-from github import Github, PaginatedList
-from pathlib import Path
-from urllib.parse import urljoin, urlparse, urlsplit, urlunparse
-
-import re
-import sqlite3
-import os
-from krawl.rdf import make_rdf
-import toml
-import requests
 
 g = Github(GITHUB_KEY)
 
@@ -190,7 +190,6 @@ def fetch_gh(ext: str, con: sqlite3.Connection):
 
 if __name__ == "__main__":
     # Execute the parse_args() method
-    import doctest
 
     doctest.testmod()
 

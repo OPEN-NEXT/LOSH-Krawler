@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
+
 import json
-from os import pathconf, sysconf
+import argparse
+from pathlib import Path
+
+import toml
+from langdetect import detect
+
 from krawl.licenses import getlicenseblacklists, getlicenses
 from krawl.wf import make_version
-import toml
 
 
 def makerepo(dct):
@@ -69,9 +74,6 @@ def getfunction(dct):
     if desc == "":
         return None
     return desc
-
-
-from langdetect import detect
 
 
 def getlang(dct):
@@ -165,8 +167,6 @@ def convert(dct):
 # ?[functional-metadata]
 # fabric-width-dim = "mm"
 # fabric-width = 400
-import argparse
-from pathlib import Path
 
 if __name__ == "__main__":
     # argv = sysconf.argv[1:]
