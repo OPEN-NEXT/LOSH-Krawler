@@ -162,8 +162,8 @@ def fetch_gh(ext: str, con: sqlite3.Connection):
                     if exports:
                         part["export"] = exports
 
-            with (dirpath / "normalized.toml").open("wb") as f:
-                f.write(toml.dumps(manifest).encode("utf8"))
+            with (dirpath / "normalized.toml").open("wb") as toml_file:
+                toml_file.write(toml.dumps(manifest).encode("utf8"))
             if ext == "toml":
                 print("TOML!")
             print("  download success: ", filepath)

@@ -54,18 +54,18 @@ def makerepo(dct):
 
 def get_license(dct):
     valid = getlicenses()
-    license = dct.get("license", {})
-    if license is None:
+    lcns = dct.get("license", {})
+    if lcns is None:
         return "N/A"
-    license = license.get("abreviation", "na")
-    if license not in valid:
-        print("[WF/LicenseMatching] ", license, " is not valid spdx")
+    lcns = lcns.get("abreviation", "na")
+    if lcns not in valid:
+        print("[WF/LicenseMatching] ", lcns, " is not valid spdx")
         return "BAD"
     blacklist = getlicenseblacklists()
-    if license in blacklist:
-        print("[WF/LicenseMatching] ", license, " is forbidden, will drop")
+    if lcns in blacklist:
+        print("[WF/LicenseMatching] ", lcns, " is forbidden, will drop")
         return FORBIDDEN
-    return license
+    return lcns
 
 
 def getfunction(dct):
@@ -177,15 +177,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print("Starting WF convert")
     print(args.files)
-    for file in args.files:
-        file = Path(file)
-        with open(file, "r") as f:
-            data = json.load(f)
+    for arg_file in args.files:
+        file_path = Path(arg_file)
+        with open(file_path, "r") as json_file:
+            data = json.load(json_file)
         normalized = convert(data)
-        print("[WF] Converting: ", str(file))
-        with (file.parent / "normalized.toml").open("wb") as f:
-            f.write(toml.dumps(normalized).encode("utf8"))
-        print("[WF] sucess!", str(file))
+        print("[WF] Converting: ", str(file_path))
+        with (file_path.parent / "normalized.toml").open("wb") as toml_file:
+            toml_file.write(toml.dumps(normalized).encode("utf8"))
+        print("[WF] sucess! - ", str(file_path))
 
         # with open("../samples/wf/recordforbidden.json", "r") as f:
         #     data = json.load(f)
