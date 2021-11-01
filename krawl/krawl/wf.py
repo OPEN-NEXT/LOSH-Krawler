@@ -31,7 +31,7 @@ def isvalid(node):
     # and len(node['contributionUpstream']['contribFile']['files']) > 0)
 
 
-query = """
+QUERY = """
 query Project($batchSize: Int, $cursor: String) {
   projects(first: $batchSize, after: $cursor) {
 		result {
@@ -130,7 +130,7 @@ def fetch_wf(storagedir):
         print("cursor: ", cursor)
         r = requests.post(
             URL,
-            json={"query": query, "variables": {"cursor": cursor, "batchSize": 50}},
+            json={"query": QUERY, "variables": {"cursor": cursor, "batchSize": 50}},
             headers=headers,
         )
         # r = requests.post(url, json={'query': q2 })

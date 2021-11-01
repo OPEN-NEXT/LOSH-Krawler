@@ -22,6 +22,9 @@ from krawl.db import (
     migrate,
 )
 
+GITHUB = "github"
+HOSTER = "github.com"
+RAW = "https://raw.githubusercontent.com"
 g = Github(GITHUB_KEY)
 
 
@@ -31,9 +34,6 @@ def is_okh_manifest_filename(s: str, ext: str) -> bool:
 
 def log(s: str):
     print(s)
-
-
-GITHUB = "github"
 
 
 def getreponame(manifest):
@@ -58,9 +58,6 @@ def getcommitsha(manifest):
 def safe_join(*args):
     stripped = [p.strip("/") for p in args]
     return "/".join(stripped)
-
-
-RAW = "https://raw.githubusercontent.com"
 
 
 def setperma(manifest, key, sha):
@@ -108,7 +105,6 @@ def makeperma(manifest, value, sha):
 
 
 def fetch_gh(ext: str, con: sqlite3.Connection):
-    HOSTER = "github.com"
     res = g.search_code(f"filename:okh.{ext}")
     print(f"Searching for okh.{ext}")
     # TODO what about multiple manifests per file?

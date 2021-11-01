@@ -17,6 +17,7 @@ RECONCILEPROPID = "P1344"
 # DATATYPES = {"timestamp": "time", "lastSeen": "time", "lastRequested": "time"}
 # TODO make sure the datetimes are corect in the ttl
 DATATYPES= {}
+URL = os.environ.get("KRAWLER_WB_HOST", "https://losh.ose-germany.de")
 
 
 def makeentitylists(graph):
@@ -106,7 +107,6 @@ def pushfile(file):
     return api.push(module)
 
 if __name__ == "__main__":
-    URL = os.environ.get("KRAWLER_WB_HOST", "https://losh.ose-germany.de")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "files", metavar="files", help="filepaths to process", nargs="+"
