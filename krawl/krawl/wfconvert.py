@@ -164,7 +164,7 @@ def convert(dct):
 # fabric-width-dim = "mm"
 # fabric-width = 400
 
-if __name__ == "__main__":
+def main():
     # argv = sysconf.argv[1:]
     # args = argparser.parse_args(argv)
     parser = argparse.ArgumentParser()
@@ -189,3 +189,6 @@ if __name__ == "__main__":
         #     normalized = convert(data)
         #     print(normalized)
         #     print(toml.dumps(normalized))
+
+if __name__ == "__main__":
+    main()

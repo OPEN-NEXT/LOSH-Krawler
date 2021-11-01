@@ -304,7 +304,7 @@ def make_rdf(manifest: dict, outpath: str, raise_errors=False) -> bool:
         return False
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "files", metavar="files", help="filepaths to process", nargs="+"
@@ -364,3 +364,6 @@ if __name__ == "__main__":
     #     fileFormat="csv",
     # )
         make_rdf(manifest, filepath.parent/ "rdf.ttl", True)
+
+if __name__ == "__main__":
+    main()

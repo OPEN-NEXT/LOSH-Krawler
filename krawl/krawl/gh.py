@@ -184,7 +184,7 @@ def fetch_gh(ext: str, con: sqlite3.Connection):
         print()
 
 
-if __name__ == "__main__":
+def main():
     # Execute the parse_args() method
 
     doctest.testmod()
@@ -196,3 +196,6 @@ if __name__ == "__main__":
     # fetch_gh("yml", con)
     # fetch_gh("json", con)
     fetch_gh("toml", con)
+
+if __name__ == "__main__":
+    main()
