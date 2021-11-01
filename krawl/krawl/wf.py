@@ -41,7 +41,7 @@ query Project($batchSize: Int, $cursor: String) {
         endCursor
       }
       edges {
-    	node {
+      node {
         id
         name
         slug
