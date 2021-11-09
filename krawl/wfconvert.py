@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import json
 import argparse
+import json
 from pathlib import Path
 
 import toml
@@ -97,13 +97,11 @@ def getfiles(dct):
         if inner.get("permalink") is None:
             print("will skip, no permalink")
             continue
-        files.append(
-            {
-                "name": f"{file['dirname']}/{file['filename']}",
-                "permalink": inner["permalink"],
-                "mimetype": inner["mimeType"],
-            }
-        )
+        files.append({
+            "name": f"{file['dirname']}/{file['filename']}",
+            "permalink": inner["permalink"],
+            "mimetype": inner["mimeType"],
+        })
     return files
 
 
@@ -164,13 +162,12 @@ def convert(dct):
 # fabric-width-dim = "mm"
 # fabric-width = 400
 
+
 def main():
     # argv = sysconf.argv[1:]
     # args = argparser.parse_args(argv)
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "files", metavar="files", help="filepaths to process", nargs="+"
-    )
+    parser.add_argument("files", metavar="files", help="filepaths to process", nargs="+")
     args = parser.parse_args()
     print("Starting WF convert")
     print(args.files)
@@ -189,6 +186,7 @@ def main():
         #     normalized = convert(data)
         #     print(normalized)
         #     print(toml.dumps(normalized))
+
 
 if __name__ == "__main__":
     main()

@@ -4,27 +4,29 @@
 import argparse
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
-import toml
+
 import rdflib as r
-from rdflib import RDFS, OWL, RDF
+import toml
+from rdflib import OWL, RDF, RDFS
+
 from krawl.common import detailskey
 from krawl.namespaces import OKH, OTLR
 
 graph = r.Graph()
 
+
 def make_base_ns(m):
     parts = urlparse(m["repo"])
-    base = urlunparse(
-        components=(
-            parts.scheme,
-            parts.netloc,
-            str(Path(parts.path, m.get("version", ""))),
-            "",
-            "",
-            "",
-        )
-    )
+    base = urlunparse(components=(
+        parts.scheme,
+        parts.netloc,
+        str(Path(parts.path, m.get("version", ""))),
+        "",
+        "",
+        "",
+    ))
     return f"{base}/"
+
 
 def make_OTRL(m):
     v = m.get("open-technology-readiness-level")
@@ -127,9 +129,7 @@ def make_module_list(m):
     add(OKH.versionOf, m.get("repo"))
     add(OKH.repo, m.get("repo"))
     add(OKH.version, m.get("version"))
-    add(
-        OKH.release, None
-    )  # TODO look for 'release' in toml or if missing, check for latest github release
+    add(OKH.release, None)  # TODO look for 'release' in toml or if missing, check for latest github release
     add(OKH.spdxLicense, m.get("spdx-license"))
     add(OKH.licensor, m.get("licensor"))
     add(OKH.organisation, m.get("organisation "))
@@ -192,11 +192,7 @@ def make_graph(manifest):
     print(dict(g.namespaces()))
 
     l, module = make_module_list(manifest)
-    l.extend(
-        make_functional_metadata_list(
-            module, manifest.get("functional-metadata", {}), BASE
-        )
-    )
+    l.extend(make_functional_metadata_list(module, manifest.get("functional-metadata", {}), BASE))
 
     manifest_e, manifest_l = make_file_list(
         manifest,
@@ -302,9 +298,7 @@ def make_rdf(manifest: dict, outpath: str, raise_errors=False) -> bool:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "files", metavar="files", help="filepaths to process", nargs="+"
-    )
+    parser.add_argument("files", metavar="files", help="filepaths to process", nargs="+")
     args = parser.parse_args()
     for file in args.files:
         filepath = Path(file)
@@ -359,7 +353,8 @@ def main():
     #     lastRequested="2021-04-01T17:00:01",
     #     fileFormat="csv",
     # )
-        make_rdf(manifest, filepath.parent/ "rdf.ttl", True)
+        make_rdf(manifest, filepath.parent / "rdf.ttl", True)
+
 
 if __name__ == "__main__":
     main()

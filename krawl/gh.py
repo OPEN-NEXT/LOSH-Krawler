@@ -1,26 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from datetime import datetime
 import doctest
 import re
 import sqlite3
+from datetime import datetime
 from urllib.parse import urlparse, urlsplit
 
-import toml
 import requests
+import toml
 from github import Github, PaginatedList
 
 from krawl.common import detailskey, fetch, parse, save, setversion, validate
 from krawl.config import GITHUB_KEY, WORKDIR
-from krawl.db import (
-    Manifest,
-    Repo,
-    create_repo,
-    get_manifest,
-    insert,
-    migrate,
-)
+from krawl.db import Manifest, Repo, create_repo, get_manifest, insert, migrate
 
 GITHUB = "github"
 HOSTER = "github.com"
@@ -129,9 +122,7 @@ def fetch_gh(ext: str, con: sqlite3.Connection):
             manifest = parse(stream, ext)
             manifest = setversion(manifest)
 
-            dirpath, filepath = save(
-                stream, GITHUB, f"{full_name}", manifest.get("version"), ext
-            )
+            dirpath, filepath = save(stream, GITHUB, f"{full_name}", manifest.get("version"), ext)
             print("..saved file", filepath)
             try:
                 print("..trying to validate")
@@ -189,13 +180,12 @@ def main():
 
     doctest.testmod()
 
-    con = sqlite3.connect(
-        str(WORKDIR / "crawl.sqlite"), detect_types=sqlite3.PARSE_DECLTYPES
-    )
+    con = sqlite3.connect(str(WORKDIR / "crawl.sqlite"), detect_types=sqlite3.PARSE_DECLTYPES)
     migrate(con)
     # fetch_gh("yml", con)
     # fetch_gh("json", con)
     fetch_gh("toml", con)
+
 
 if __name__ == "__main__":
     main()
