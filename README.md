@@ -1,5 +1,19 @@
 # OKH Krawler
 
+---
+---
+
+!!!
+**DEPRECATED**
+This repo is now deprecated,
+and superseded by <https://github.com/iop-alliance/OKH-krawler>.
+!!!
+
+---
+---
+
+<s>
+
 This is a crawler for the [Library of Open Source Hardware (LOSH)](https://losh.opennext.eu).
 The crawler searches [Wikifactory](https://wikifactory.com)
 and [GitHub](https://github.com) for hardware projects,
@@ -88,3 +102,5 @@ krawl validate -v project.yml
 ## Configuration
 
 A sample configuration file with explanations can be found int [sample-config.yml](sample-config.yml).
+
+</s>
